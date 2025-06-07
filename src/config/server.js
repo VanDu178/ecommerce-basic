@@ -9,7 +9,4 @@ connectDB();
 app.use(express.json());
 app.use(morgan("dev"));
 app.use("/api", indexRoute);
-
 module.exports = app;
-
-// test

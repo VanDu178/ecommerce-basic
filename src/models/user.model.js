@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema({
       return !this.googleId;
     },
   },
+  isBan: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 userSchema.methods.comparePassword = async (password) => {
