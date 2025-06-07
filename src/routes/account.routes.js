@@ -1,12 +1,17 @@
 const express = require("express");
+const validateObjectId = require("../middleware/validateObjectId");
 const router = express.Router();
 const {
   accounts,
-  lockAccount,
-  unlockAccount,
+  detail,
+  update,
+  banAccount,
+  unBanAccount,
 } = require("../controllers/account.controllers");
 router.get("/", accounts);
-router.post("/lock/:id", lockAccount);
-router.post("/unlock/:id", unlockAccount);
+router.get("/:id", validateObjectId, detail);
+router.put("/:id", validateObjectId, update);
+router.post("/ban/:id", validateObjectId, banAccount);
+router.post("/unban/:id", validateObjectId, unBanAccount);
 
 module.exports = router;
