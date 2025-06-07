@@ -49,7 +49,7 @@ const createProduct = async (req, res) => {
 };
 
 //Cách viết theo promise thay vì dùng asyn/await
-const editProduct = (req, res) => {
+const updateProduct = (req, res) => {
   const { id } = req.params;
   const { name, categoryId, price, description } = req.body;
 
@@ -107,6 +107,6 @@ module.exports = {
   getAllProducts,
   getProductById,
   createProduct,
-  editProduct,
+  updateProduct,
   deleteProduct,
 };
