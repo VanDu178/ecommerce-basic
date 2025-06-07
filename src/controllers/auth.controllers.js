@@ -1,5 +1,7 @@
 const User = require("../models/user.model");
+
 const register = (req, res) => {
+  console.log("da vao duoc day");
   const { username, password, email } = req.body;
   console.log("Registering user:", username);
   console.log("Password:", password);
@@ -9,7 +11,8 @@ const register = (req, res) => {
     password,
     email,
   });
-  newUser.save()
+  newUser
+    .save()
     .then((user) => {
       res.status(201).json({ message: "User registered successfully", user });
     })

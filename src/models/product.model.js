@@ -3,6 +3,7 @@ const productSchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
+    trim: true,
   },
   categoryId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -17,6 +18,7 @@ const productSchema = mongoose.Schema({
   description: {
     type: String,
     default: "",
+    trim: true,
   },
 });
 
