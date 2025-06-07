@@ -3,6 +3,6 @@ const router = express.Router();
 
 const { createCategory } = require("../controllers/category.controllers");
 
-router.post("/createCategory", createCategory);
+router.post("/categories", createCategory);
 
 module.exports = router;
