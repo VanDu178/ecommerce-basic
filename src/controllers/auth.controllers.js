@@ -18,7 +18,9 @@ const register = (req, res) => {
     })
     .catch((error) => {
       console.error("Error creating user:", error);
-      res.status(500).json({ message: "Error creating user", error });
+      res
+        .status(500)
+        .json({ message: "Error creating user", error: error.message });
     });
 };
 
@@ -37,7 +39,9 @@ const login = (req, res) => {
     })
     .catch((error) => {
       console.error("Error finding user:", error);
-      res.status(500).json({ message: "Error finding user", error });
+      res
+        .status(500)
+        .json({ message: "Error finding user", error: error.message });
     });
 };
 

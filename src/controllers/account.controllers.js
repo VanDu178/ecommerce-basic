@@ -10,7 +10,7 @@ const accounts = async (req, res) => {
       });
     })
     .catch((err) => {
-      res.status(500).json({ message: "Đã có lỗi xảy ra" });
+      res.status(500).json({ message: "Đã có lỗi xảy ra", err: err.message });
     });
 };
 
@@ -29,7 +29,9 @@ const update = async (req, res) => {
       .status(200)
       .json({ message: "Cập nhật thông tin thành công", account });
   } catch (err) {
-    return res.status(500).json({ message: "Đã có lỗi xảy ra" });
+    return res
+      .status(500)
+      .json({ message: "Đã có lỗi xảy ra", err: err.message });
   }
 };
 
@@ -43,7 +45,7 @@ const detail = async (req, res) => {
     }
     return res.status(200).json({ account });
   } catch (err) {
-    return res.status(500).json({ message: "Đã xảy ra lỗi", err });
+    return res.status(500).json({ message: "Đã xảy ra lỗi", err: err.message });
   }
 };
 
@@ -59,7 +61,9 @@ const banAccount = async (req, res) => {
       return res.status(200).json({ message: "Khóa tài khoản thành công" });
     });
   } catch (err) {
-    return res.status(500).json({ message: "Đã có lỗi xảy ra" });
+    return res
+      .status(500)
+      .json({ message: "Đã có lỗi xảy ra", err: err.message });
   }
 };
 
@@ -75,7 +79,9 @@ const unBanAccount = async (req, res) => {
       message: "Mở khóa tài khoản thành công",
     });
   } catch (err) {
-    return res.status(500).json({ message: "Đã có lỗi xảy ra" });
+    return res
+      .status(500)
+      .json({ message: "Đã có lỗi xảy ra", err: err.message });
   }
 };
 

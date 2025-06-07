@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
     required: function () {
       return !this.googleId;
     },
+    select: false, //mặc định khi lấy thông tin không lấy trường mật khẩu
   },
   isBan: {
     type: Boolean,

@@ -3,23 +3,34 @@ const Product = require("../models/product.model");
 const Category = require("../models/category.model");
 
 const getAllProducts = async (req, res) => {
-  const products = await Product.find();
-  // Logic to retrieve all products from the database
-  res
-    .status(200)
-    .json({ message: "All products retrieved successfully", products });
+  try {
+    const products = await Product.find();
+    // Logic to retrieve all products from the database
+    return res
+      .status(200)
+      .json({ message: "All products retrieved successfully", products });
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ message: "Đã có lỗi xảy ra", err: err.message });
+  }
 };
 
 const getProductById = async (req, res) => {
-  const { id } = req.params;
-  if (mongoose.Types.ObjectId.isValid(id) === false) {
-    return res.status(400).json({ message: "Invalid product ID" });
+  try {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+    res
+      .status(200)
+      .json({ message: "Product retrieved successfully", product });
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ message: "Đã có lỗi xảy ra", err: err.message });
   }
-  const product = await Product.findById(id);
-  if (!product) {
-    return res.status(404).json({ message: "Product not found" });
-  }
-  res.status(200).json({ message: "Product retrieved successfully", product });
 };
 
 const createProduct = async (req, res) => {
@@ -44,7 +55,9 @@ const createProduct = async (req, res) => {
     await newProduct.save();
     return res.status(201).json({ message: "Sản phẩm được tạo thành công" });
   } catch (err) {
-    return res.status(500).json({ message: "Đã có lỗi xảy ra" });
+    return res
+      .status(500)
+      .json({ message: "Đã có lỗi xảy ra", err: err.message });
   }
 };
 
@@ -99,7 +112,9 @@ const deleteProduct = async (req, res) => {
       .status(200)
       .json({ message: "Xóa sản phẩm thành công", productDel });
   } catch (err) {
-    return res.status(500).json({ message: "Đã có lỗi xảy ra", err });
+    return res
+      .status(500)
+      .json({ message: "Đã có lỗi xảy ra", err: err.message });
   }
 };
 
