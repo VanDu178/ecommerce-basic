@@ -4,10 +4,14 @@ const {
   getAllProducts,
   getProductById,
   createProduct,
+  editProduct,
+  deleteProduct,
 } = require("../controllers/product.controllers");
 
 router.get("/getAllProducts", getAllProducts);
-router.get("/getAllProducts/:id", getProductById);
 router.post("/createProduct", createProduct);
+router.get("/getAllProducts/:id", getProductById);
+router.put("/editProduct/:id", editProduct);
+router.delete("/deleteProduct/:id", deleteProduct);
 
 module.exports = router;
