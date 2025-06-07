@@ -24,14 +24,13 @@ const getProductById = async (req, res) => {
 
 const createProduct = async (req, res) => {
   try {
-    const { name, categoryName, price, description } = req.body;
+    const { name, categoryId, price, description } = req.body;
     const existingProduct = await Product.findOne({ name });
     if (existingProduct) {
       return res.status(400).json({ message: "Sản phẩm đã tồn tại" });
     }
 
-    const category = await Category.findOne({ name: categoryName });
-    console.log(category);
+    const category = await Category.findById(categoryId);
     if (!category) {
       return res.status(404).json({ message: "Loại sản phẩm không tồn tại" });
     }
